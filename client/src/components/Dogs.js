@@ -3,11 +3,13 @@ import axios from "axios"
 import DivBorder from "./DivBorder";
 import Dog from "./Dog";
 import DogForm from "./DogForm";
+import CircleLoader from "react-spinners/CircleLoader";
 
 const Dogs = ()=> {
 
   const [dogs, setDogs] = useState([]);
   const [showForm, setShowForm] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
     getDogs();
@@ -16,6 +18,8 @@ const Dogs = ()=> {
   const getDogs = async() => {
     let response = await axios.get("/api/dogs");
     setDogs(response.data);
+    alert("loading!");
+    setLoading(!loading);
   };
 
   const renderDogs = () => {
@@ -45,6 +49,7 @@ const Dogs = ()=> {
     <DivBorder color = "black">
       <h1>Here's some dogs!</h1>
       <button onClick = {toggleForm}>{showForm ? "Cancel Add" : "Add Dog"}</button>
+      {loading && <CircleLoader />}
       {showForm && <DogForm createDog = {createDog}/>}
       {renderDogs()}
     </DivBorder>

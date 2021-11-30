@@ -7,6 +7,7 @@ import DogForm from "./DogForm";
 const Dogs = ()=> {
 
   const [dogs, setDogs] = useState([]);
+  const [showForm, setShowForm] = useState(false)
 
   useEffect(()=>{
     getDogs();
@@ -41,10 +42,13 @@ const Dogs = ()=> {
     setDogs(filteredDogs);
   }
 
+  const toggleForm = () =>setShowForm(!showForm);
+
   return(
     <DivBorder color = "black">
       <h1>Here's some dogs!</h1>
-      <DogForm createDog = {createDog}/>
+      <button onClick = {toggleForm}>{showForm ? "Cancel Add" : "Add Dog"}</button>
+      {showForm && <DogForm createDog = {createDog}/>}
       {renderDogs()}
     </DivBorder>
   );

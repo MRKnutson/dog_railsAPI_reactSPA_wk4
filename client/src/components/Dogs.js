@@ -15,10 +15,7 @@ const Dogs = ()=> {
 
   const getDogs = async() => {
     let response = await axios.get("/api/dogs");
-    console.log(response.data);
     setDogs(response.data);
-    console.log("setDogs");
-    console.log(dogs)
   };
 
   const renderDogs = () => {
@@ -37,7 +34,7 @@ const Dogs = ()=> {
   };
 
   const deleteDog = async (id) => {
-    let response = await axios.delete(`/api/dogs/${id}`);
+    await axios.delete(`/api/dogs/${id}`);
     let filteredDogs = dogs.filter((dog)=>dog.id !== id);
     setDogs(filteredDogs);
   }

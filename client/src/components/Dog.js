@@ -9,7 +9,7 @@ const Dog = (props) => {
   const toggleForm =()=>setShowForm(!showForm);
 
   return(
-    <DivBorder>
+    <DivBorder color = "red">
       <h3>Name: {name}</h3>
       <p>Breed: {breed}</p>
       <p>Gender: {gender}</p>
